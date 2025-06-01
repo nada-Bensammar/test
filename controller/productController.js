@@ -11,12 +11,9 @@ const {uploadMixImages}=require('../middleware/uploadImageMiddleware')
 
 
 const uploadProductImage =uploadMixImages([
+   
     {
-        name:'imageCovert',
-        maxCount:1
-    },
-    {
-        name:'image',
+        name:'images',
         maxCount:10
     }
 ])
@@ -29,33 +26,33 @@ const resizeProductImages = asyncHandler(async (req, res, next) => {
   if (req.files) {
     // console.log(req.files);
     //1- Image processing for imageCover
-    if (req.files.imageCovert) {
-      const imageCoverFileName = `product-${uuidv4()}-${Date.now()}-cover.jpeg`
+    if (req.files.images) {
+      const imagesFileName = `product-${uuidv4()}-${Date.now()}-cover.jpeg`
       
-      await sharp(req.files.imageCovert[0].buffer)
+      await sharp(req.files.images[0].buffer)
         .resize(2000, 1333)
         .toFormat('jpeg')
         .jpeg({ quality: 95 })
-        .toFile(`uploads/products/${imageCoverFileName}`)
-  
+        .toFile(`uploads/products/${imagesFileName}`)
+      
       // Save image into our db
-      req.body.imageCovert = imageCoverFileName
+      req.body.images = imagesFileName
     }
     //2- Image processing for images
-    if (req.files.image) {
-      req.body.image = []
+    if (req.files.images) {
+      req.body.images = []
       await Promise.all(
-        req.files.image.map(async (img, index) => {
-          const imageName = `product-${uuidv4()}-${Date.now()}-${index + 1}.jpeg`
+        req.files.images.map(async (img, index) => {
+          const imagesName = `product-${uuidv4()}-${Date.now()}-${index + 1}.jpeg`
   
           await sharp(img.buffer)
             .resize(2000, 1333)
             .toFormat('jpeg')
             .jpeg({ quality: 95 })
-            .toFile(`uploads/products/${imageName}`)
+            .toFile(`uploads/products/${imagesName}`)
   
           // Save image into our db
-          req.body.image.push(imageName)
+          req.body.images.push(imagesName)
         })
       );
   

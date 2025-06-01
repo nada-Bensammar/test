@@ -30,31 +30,20 @@ const productSchema = new mongoose.Schema({
         type:Number,
         required:[true,'price product is required'],
         trim:true,
-        max:[20000 ,'price number is too long ']
+        max:[9000000 ,'price number is too long ']
     },
     priceAfterDiscount:{
         type:Number,
     },
-    imageCovert:{
-        type:String,
-        required:[true , 'Image covert is required']
-    },
-    image:[String],
+    
+    images:[String],
     colors:[String],
     category:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'category',
-        required:[true, 'category of product is required']
+        type:String
     },
-    subCategory:[
-        {
-            type:mongoose.Schema.ObjectId,
-            ref:'subCategory'
-        }
-    ],
+    
     brand:{
-        type:mongoose.Schema.ObjectId,
-        ref:'brandShema'
+        type:String
     },
     ratingsAverage: {
         type: Number,
@@ -83,6 +72,7 @@ productSchema.virtual('reviews',{
 })
 // Mongoose query middleware
 productSchema.pre(/^find/, function (next) {
+    this.select('title'); 
     this.populate({
       path: 'category',
       select: 'name -_id',
