@@ -23,7 +23,7 @@ const cartRouter = require('./routers/cartRouter')
 const orderRouter = require('./routers/orderRouter')
 //const  webhookCheckout = require('./routers/orderRouter')
 
-const aiRouter = require('./routers/aiRouter')
+const recommendRouter = require('./routers/recommendRouter')
 
 
 //connect data base 
@@ -55,6 +55,7 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use('/api/category',categoryRoute)
 //app.use('/api/subcategory',subCategoryRoute)
+
 app.use('/api/brand',brandRouter)
 app.use('/api/product',productRouter)
 app.use('/api/user',userRouter)
@@ -68,7 +69,7 @@ app.use('/api/order',orderRouter)
   
 
 
-app.use('/api/ai', aiRouter)
+app.use("/api/recommend", recommendRouter)
 
 
 

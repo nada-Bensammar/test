@@ -20,7 +20,6 @@ const mailOpts ={
     text: options.message,
 }
  // 3) Send email
-
 await transporter.sendMail(mailOpts)
 }
 

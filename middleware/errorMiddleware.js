@@ -8,4 +8,4 @@ const globalError =(err,req,res,next)=>{
         stack:err.stack
     })
 }
-module.exports =globalError
+module.exports = globalError 

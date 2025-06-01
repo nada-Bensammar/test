@@ -8,6 +8,7 @@ const factory = require('./handlerFactory')
 const {uploadSingleImage}=require('../middleware/uploadImageMiddleware')
 const createToken = require('../utils/createToken')
 
+
 exports.uploadUserImage = uploadSingleImage('profilImg')
 
 exports.resizeImage =asyncHandler( async(req,res,next)=>{

@@ -12,7 +12,7 @@ const categoryShema = new mongoose.Schema({
         lowercase:true
     },
     image:String ,
-}, {timestamps : true}// this provide powerful way to track the creation and modification times of documents 
+}, {timestamps : true} // this provide powerful way to track the creation and modification times of documents 
 )
 
 module.exports=mongoose.model('category',categoryShema)

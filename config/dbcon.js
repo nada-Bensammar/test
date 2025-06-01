@@ -7,7 +7,7 @@ const dbConnection=()=>{
   mongoose
   .connect(URL)
   .then((conn) => {
-    console.log(`data base is connectingn ${conn.connection.host}`);
+    console.log(`data base is connectingn`);
   })
   //.catch((err) => {
    // console.error(`the error of data base is ${err}`);
